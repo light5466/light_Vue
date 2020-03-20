@@ -1,9 +1,13 @@
 <template>
-  <div class="app-container">
+  <div class="appcontainer">
       <!-- header头部 -->
       <mt-header fixed title="第一个渣渣项目"></mt-header>
 
       <!-- 显示框 -->
+      <transition mode="out-in">
+        <router-view></router-view>
+      </transition>
+
       <!-- 尾部导航栏 -->
       <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to="/home">
@@ -32,6 +36,13 @@
 </script>
 
 
-<style lang="scss" scoped>
-    .app-contaiiner {padding-top: 40px;}
+<style lang="less" scoped>
+    .appcontainer {padding-top: 40px; 
+    // 解决滑动出现滚动条
+    overflow-x: hidden; }
+
+    // 分开写实为了让动画实现的更好
+    .v-enter{ opacity: 0; transform: translateX(100%);}
+    .v-leave-to{ opacity: 0; transform: translateX(-100%); position: absolute;}
+    .v-enter-active, .v-leave-active{ transition: all 0.3s ease; }
 </style>

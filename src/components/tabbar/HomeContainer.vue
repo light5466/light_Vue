@@ -1,16 +1,25 @@
 <template>
   <div>
-
-    <!-- 轮播图区域 -->
-    <mt-swipe :auto="4000">
-      <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
-      <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
-        <img :src="item.img" alt="">
+    <!-- 导入轮播图插件 -->
+    <mt-swipe :auto="3000">
+      <!-- <mt-swipe-item v-for="item in imgList" :key="item.no">
+        <img src="../images/'+item.url+'" :alt="item.no">
+      </mt-swipe-item> -->
+      <mt-swipe-item>
+        <img src="../../images/lb1.jpg" alt="1">
+      </mt-swipe-item>
+      <mt-swipe-item>
+        <img src="../../images/lb2.jpg" alt="2">
+      </mt-swipe-item>
+      <mt-swipe-item>
+        <img src="../../images/lb3.jpg" alt="3">
+      </mt-swipe-item>
+      <mt-swipe-item>
+        <img src="../../images/lb4.jpg" alt="4">
       </mt-swipe-item>
     </mt-swipe>
 
-
-    <!-- 九宫格 到 6宫格 的改造工程 -->
+    <!-- 九宫格布局样式 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
               <img src="../../images/menu1.png" alt="">
@@ -30,77 +39,66 @@
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
               <img src="../../images/menu6.png" alt="">
               <div class="mui-media-body">联系我们</div></a></li>
-  </ul> 
+    </ul> 
 
+    
   </div>
 </template>
 
 <script>
-import { Toast } from "mint-ui";
+// import { Toast } from 'mint-ui';
+// export default {
+//   data() {
+//     return {
+//       imgList:[]
+//     };
+//   },
+//   created() {
+//     this.getImg();
+//   },
+//   methods: {
+//     getImg() {
+//       // 获取轮播图的方法
+//       var img = [{no: 1, url: 'lb1.jpg'},
+//                  {no: 2, url: 'lb2.jpg'},
+//                  {no: 3, url: 'lb3.jpg'},
+//                  {no: 4, url: 'lb4.jpg'}],
+//       this.imgList = img;
+//       // this.$http.get("http://vue.studyit.io/api/getlunbo").then(result=>{
+//       //   if (result.body.status === 0) {
+//       //     this.imgList = result.body.message;
+//       //     Toast('获取轮播图ojbk');
+//       //   } else {
+//       //     Toast('获取轮播图失败');
+//       //   }
+//       // });
+//     }
+//   }
+// }
 
-export default {
-  data() {
-    return {
-      lunbotuList: [] // 保存轮播图的数组
-    };
-  },
-  created() {
-    this.getLunbotu();
-  },
-  methods: {
-    getLunbotu() {
-      // 获取轮播图数据的方法
-      this.$http.get("http://vue.studyit.io/api/getlunbo").then(result => {
-        // console.log(result.body);
-        if (result.body.status === 0) {
-          // 成功了
-          this.lunbotuList = result.body.message;
-        } else {
-          // 失败的
-          Toast("加载轮播图失败。。。");
-        }
-      });
-    }
-  }
-};
 </script>
 
-<style lang="scss" scoped>
-.mint-swipe {
-  height: 200px;
+<style lang="less" scoped>
+// 轮播图样式
+  .mint-swipe{height: 200px;
+    img{width: 100%; height: 100%;}
+  }
 
-  .mint-swipe-item {
-    &:nth-child(1) {
-      background-color: red;
-    }
-    &:nth-child(2) {
-      background-color: blue;
-    }
-    &:nth-child(3) {
-      background-color: cyan;
-    }
-
+  // 九宫格布局样式
+  .mui-grid-view.mui-grid-9 {
+    background-color: #fff;
+    border: none;
     img {
-      width: 100%;
-      height: 100%;
+      width: 60px;
+      height: 60px;
+    }
+
+    .mui-media-body{
+      font-size: 13px;
     }
   }
-}
 
-.mui-grid-view.mui-grid-9 {
-  background-color: #fff;
-  border: none;
-  img {
-    width: 60px;
-    height: 60px;
+  .mui-grid-view.mui-grid-9 .mui-table-view-cell {
+    border: 0;
   }
-
-  .mui-media-body{
-    font-size: 13px;
-  }
-}
-
-.mui-grid-view.mui-grid-9 .mui-table-view-cell {
-  border: 0;
-}
 </style>
